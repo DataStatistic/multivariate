@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis Multivariado de Datos</title>
+  <meta name="description" content="Material del curso de AMD: diapositivas, código y datos." />
+  <style>
+    
+    .links {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 8px;
+    }
+
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --border: #e5e7eb;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: white;
+      padding: 56px 0 44px;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+    }
+
+    header p {
+      margin: 0 0 8px;
+      max-width: 760px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1.05rem;
+    }
+
+    .author {
+      margin-top: 18px;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .author a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .author a:hover {
+      text-decoration: underline;
+    }
+
+    .repo-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: white;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
+
+    .repo-link:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    main {
+      padding: 42px 0 56px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: 1.5rem;
+    }
+
+    .section-text {
+      margin: 0 0 28px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin-top: 0;
+      margin-bottom: 18px;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #e5e7eb;
+      color: #374151;
+      padding: 7px 12px;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.82rem;
+      transition: 0.2s ease;
+      line-height: 1.1;
+    }
+
+    .btn:hover {
+      background: #d1d5db;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    .muted-box {
+      margin-top: 34px;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: white;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0 40px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 42px 0 34px;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Análisis Multivariado de Datos</h1>
+      <p>
+        Material del curso: diapositivas, ejemplos en R/Python y datos.
+      </p>
+
+      <div class="author">
+        <strong>Mario José Pacheco López</strong><br>
+        <a href="mailto:mariopachecolopez@gmail.com">mariopachecolopez@gmail.com</a>
+      </div>
+
+      <a class="repo-link" href="https://github.com/DataStatistic/multivariate" target="_blank" rel="noopener noreferrer">
+        Ver repositorio en GitHub
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2 class="section-title">Material de clases</h2>
+      <p class="section-text">
+        Selecciona el tema que deseas consultar.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Disponible</span>
+          <h3>Análisis Exploratorio de Datos Multivariados</h3>
+          <p>
+            Medidas de centralidad; co-variabilidad y correlación; gráficos; datos categóricos; descripción de datos faltantes.
+          </p>
+          <div class="links">
+  <a class="btn" href="slides/01-aedm/aedm.html">Diapositivas</a>
+  <a class="btn" href="https://github.com/DataStatistic/multivariate/tree/main/code/R/01-aedm" target="_blank" rel="noopener noreferrer">R</a>
+  <a class="btn" href="https://github.com/DataStatistic/multivariate/tree/main/code/python/01-aedm" target="_blank" rel="noopener noreferrer">Python</a>
+  <a class="btn" href="https://github.com/DataStatistic/multivariate/tree/main/data/raw/commun" target="_blank" rel="noopener noreferrer">Datos</a>
+</div>
+        </article>
+
+        <article class="card">
+          <span class="tag">Próximamente</span>
+          <h3>Métodos de Reducción de Dimensionalidad</h3>
+          <p>
+            Análisis de componentes principales; análisis de correspondencias; análisis factorial de datos mixtos; análisis de correlación canónica; análisis factorial exploratorio y confirmatorio.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Próximamente</span>
+          <h3>Clustering</h3>
+          <p>
+            Métodos de agrupamiento jerárquico y no jerárquico.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Próximamente</span>
+          <h3>Discriminación y Clasificación</h3>
+          <p>
+            Métodos de discriminación lineal y no lineal; métodos de clasificación.
+          </p>
+        </article>
+      </div>
+
+      <div class="muted-box">
+        A medida que agregues nuevos temas, duplica una tarjeta y cambia el título y la ruta del enlace.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      © Curso de Análisis Multivariado de Datos
+    </div>
+  </footer>
+</body>
+</html>
