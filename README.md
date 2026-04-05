@@ -1,86 +1,43 @@
-\# Curso de Análisis Multivariado de Datos
+# Curso de Análisis Multivariado de Datos
 
+Repositorio con material del curso **Análisis Multivariado de Datos**, incluyendo diapositivas en HTML, ejemplos desarrollados en **R** y **Python**, y bases de datos empleadas en los ejercicios.
 
+## Autor
 
-Repositorio con material del curso \*\*Análisis Multivariado de Datos\*\*, incluyendo diapositivas en HTML, ejemplos desarrollados en \*\*R\*\* y \*\*Python\*\*, y bases de datos en empleadas en los ejercicios.
+**Mario José Pacheco López**  
+[mariopachecolopez@gmail.com](mailto:mariopachecolopez@gmail.com)
 
+## Contenido del repositorio
 
+El repositorio reúne, para cada tema del curso:
 
-\## Autor
+- diapositivas en formato HTML;
+- ejemplos de implementación en R;
+- ejemplos de implementación en Python;
+- bases de datos para el desarrollo de ejercicios y aplicaciones.
 
+## Tema disponible
 
-
-\*\*Mario José Pacheco López\*\*  
-
-\[mariopachecolopez@gmail.com](mariopachecolopez@gmail.com)
-
-
-
-\## Contenido del repositorio
-
-
-
-El repositorio reúne, por cada tema del curso:
-
-
-
-\- diapositivas en formato HTML;
-
-\- ejemplos de implementación en R;
-
-\- ejemplos de implementación en Python;
-
-\- bases de datos para el desarrollo de ejercicios y aplicaciones.
-
-
-
-\## Tema disponible
-
-
-
-\### 01. Análisis Exploratorio de Datos Multivariados
-
-
+### 01. Análisis Exploratorio de Datos Multivariados
 
 Este capítulo incluye:
 
+- diapositivas del tema;
+- ejemplos en R;
+- ejemplos en Python;
+- datos asociados.
 
-
-\- diapositivas del tema;
-
-\- ejemplos en R;
-
-\- ejemplos en Python;
-
-\- datos asociados.
-
-
-
-\## Estructura del repositorio
-
-
+## Estructura del repositorio
 
 ```text
-
 multivariate/
-
 ├─ README.md
-
 ├─ docs/
-
 │  ├─ index.html
-
 │  └─ slides/
-
 ├─ code/
-
 │  ├─ R/
-
 │  └─ python/
-
 └─ data/
-
-&#x20;  ├─ raw/
-
-&#x20;  └─ processed/
-
+   ├─ raw/
+   └─ processed/
