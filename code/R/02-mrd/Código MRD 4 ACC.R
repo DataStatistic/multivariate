@@ -88,8 +88,8 @@ icet_z = icet_dpto %>%
   mutate(across(where(is.numeric), \(x) (x-mean(x))/sd(x)))
 
 # Para municipios (quitar #)
-icet_z = icet_munic %>%
-  mutate(across(where(is.numeric), \(x) (x-mean(x))/sd(x)))
+#icet_z = icet_munic %>%
+#  mutate(across(where(is.numeric), \(x) (x-mean(x))/sd(x)))
 
 # Grupos de variables
 X = icet_z %>%
