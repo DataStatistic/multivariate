@@ -1,6 +1,6 @@
 
 # Métodos de reducción de dimensionalidad
-# Aálisis Factorial
+# Análisis Factorial
 
 library(readxl)       # importar datos de excel
 library(dplyr)        # manipulación de datos
