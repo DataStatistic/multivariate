@@ -1335,19 +1335,32 @@ n_g-1 \geq p,\quad g=1,\ldots,G.
 
 <h3 id="validación-cruzada">Validación cruzada</h3>
 <ul>
-<li><p>La validación cruzada se realiza dentro de la muestra de entrenamiento.</p></li>
-<li><p>Su objetivo es estimar el desempeño del método antes de evaluarlo en la muestra de prueba.</p></li>
-<li><p>La muestra de entrenamiento se divide en partes; en cada repetición, una parte se deja fuera, el método se ajusta con las restantes y luego se clasifican las observaciones dejadas fuera.</p></li>
+<li><p>La validación cruzada es un procedimiento para evaluar el desempeño de un método usando solo la muestra de entrenamiento.</p></li>
+<li><p>Consiste en ajustar el método con una parte de los datos de entrenamiento y evaluar su clasificación en otra parte no usada en ese ajuste.</p></li>
+<li><p>Su objetivo es comparar métodos antes de la evaluación final en la muestra de prueba.</p></li>
 </ul>
 </section>
 <section class="slide level2">
 
-<h3 id="validación-cruzada-leave-one-out">Validación cruzada leave-one-out</h3>
+<h3 id="validación-cruzada-k-fold">Validación cruzada <span class="math inline">\(K\)</span>-fold</h3>
 <ul>
-<li><p>En la validación cruzada leave-one-out, se deja por fuera una observación de entrenamiento cada vez.</p></li>
-<li><p>El método se ajusta con las demás observaciones y luego se clasifica la observación excluida.</p></li>
-<li><p>Al final, cada observación de entrenamiento tiene una clase predicha sin haber sido usada en el ajuste que la clasificó.</p></li>
-<li><p>Con esas predicciones se construye una matriz de confusión interna.</p></li>
+<li><p>En la validación cruzada <span class="math inline">\(K\)</span>-fold, la muestra de entrenamiento se divide en <span class="math inline">\(K\)</span> particiones estratificadas.</p></li>
+<li><p>En cada repetición, una partición se deja fuera, el método se ajusta con las <span class="math inline">\(K-1\)</span> restantes y se clasifican las observaciones excluidas.</p></li>
+<li><p>Al final, cada observación de entrenamiento tiene una clase predicha obtenida sin haber sido usada en el ajuste correspondiente.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="elección-de-k">Elección de <span class="math inline">\(K\)</span></h3>
+<ul>
+<li><p>Usualmente se toma <span class="math inline">\(K=10\)</span>.</p></li>
+<li><p>Si algún grupo tiene pocos casos, se reduce <span class="math inline">\(K\)</span>, procurando que:</p></li>
+</ul>
+<p><span class="math display">\[
+K \leq \min_g n_g.
+\]</span></p>
+<ul>
+<li>Los mismos folds deben usarse para comparar todos los métodos discriminantes.</li>
 </ul>
 </section>
 <section class="slide level2">
