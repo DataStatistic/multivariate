@@ -1263,12 +1263,166 @@ h_1(\mathbf{x}),h_2(\mathbf{x}),\ldots,h_q(\mathbf{x}).
 </ul>
 <p>En este sentido, el ADR regulariza la regla cuadrática y puede aproximarse al ADL según los valores elegidos de <span class="math inline">\(\lambda\)</span> y <span class="math inline">\(\gamma\)</span>.</p>
 </div>
+</section>
+<section class="slide level2">
+
+<h3 id="evaluación-del-análisis-discriminante">Evaluación del análisis discriminante</h3>
+<ul>
+<li><p>El objetivo es verificar si los métodos discriminantes clasifican adecuadamente observaciones que no participaron en el ajuste.</p></li>
+<li><p>El procedimiento se basa en una partición de los datos en muestra de entrenamiento (<em>training sample</em>) y muestra de prueba (<em>test sample</em>).</p></li>
+<li><p>Esta partición debe ser estratificada, de modo que la distribución de los grupos se mantenga aproximadamente igual en entrenamiento y prueba.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="muestra-de-entrenamiento-y-prueba">Muestra de entrenamiento y prueba</h3>
+<ul>
+<li><p>La muestra de entrenamiento se usa para ajustar los métodos y realizar validaciones internas.</p></li>
+<li><p>La muestra de prueba se usa para evaluar y comparar el desempeño final de los métodos ajustados.</p></li>
+<li><p>Una partición frecuente es: <span class="math display">\[
+n_{train} \approx 0.70\times n\quad y\quad n_{test} \approx 0.30\times n,
+\]</span> o también <span class="math display">\[
+n_{train} \approx 0.80\times n\quad y\quad n_{test} \approx 0.20 \times n.
+\]</span></p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="tamaño-de-entrenamiento">Tamaño de entrenamiento</h3>
+<div class="slide" style="font-size: 90%;">
+<ul>
+<li><p>Cada grupo debe tener al menos dos observaciones, <span class="math display">\[
+n_g \geq 2,\quad g=1,\ldots,G.
+\]</span></p></li>
+<li><p>Para métodos que estiman una matriz de covarianzas común, <span class="math display">\[
+n_{\text{train}}-G \geq p.
+\]</span></p></li>
+<li><p>Para métodos que estiman matrices de covarianza por grupo, <span class="math display">\[
+n_g-1 \geq p,\quad g=1,\ldots,G.
+\]</span></p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="colinealidad-entre-predictores">Colinealidad entre predictores</h3>
+<ul>
+<li><p>Antes de ajustar los métodos, se debe revisar si existen predictores altamente redundantes.</p></li>
+<li><p>Una medida útil es el número de condición de la matriz de correlaciones de los predictores: <span class="math display">\[
+\kappa(\mathbf{R})=
+\frac{\lambda_{\max}}{\lambda_{\min}},
+\]</span> donde <span class="math inline">\(\lambda_{\max}\)</span> y <span class="math inline">\(\lambda_{\min}\)</span> son el mayor y menor autovalor de <span class="math inline">\(\mathbf{R}\)</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="colinealidad-entre-predictores-1">Colinealidad entre predictores</h3>
+<div class="slide" style="font-size: 90%;">
+<ul>
+<li><p>Un valor grande de <span class="math inline">\(\kappa(\mathbf{R})\)</span> indica que la matriz está cerca de ser singular.</p></li>
+<li><p>En ese caso, las inversas de matrices de covarianza pueden ser numéricamente inestables.</p></li>
+<li><p>Como criterio: <span class="math display">\[
+\kappa &lt; 30, \quad \text{aceptable},
+\]</span> <span class="math display">\[
+30 \leq \kappa \leq 100, \quad \text{posible colinealidad},
+\]</span> <span class="math display">\[
+\kappa &gt; 100, \quad \text{colinealidad fuerte}.
+\]</span></p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="validación-cruzada">Validación cruzada</h3>
+<ul>
+<li><p>La validación cruzada se realiza dentro de la muestra de entrenamiento.</p></li>
+<li><p>Su objetivo es estimar el desempeño del método antes de evaluarlo en la muestra de prueba.</p></li>
+<li><p>La muestra de entrenamiento se divide en partes; en cada repetición, una parte se deja fuera, el método se ajusta con las restantes y luego se clasifican las observaciones dejadas fuera.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="validación-cruzada-leave-one-out">Validación cruzada leave-one-out</h3>
+<ul>
+<li><p>En la validación cruzada leave-one-out, se deja por fuera una observación de entrenamiento cada vez.</p></li>
+<li><p>El método se ajusta con las demás observaciones y luego se clasifica la observación excluida.</p></li>
+<li><p>Al final, cada observación de entrenamiento tiene una clase predicha sin haber sido usada en el ajuste que la clasificó.</p></li>
+<li><p>Con esas predicciones se construye una matriz de confusión interna.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="matriz-de-confusión">Matriz de confusión</h3>
+<ul>
+<li><p>La matriz de confusión cruza el grupo real con el grupo predicho.</p></li>
+<li><p>Las entradas de la diagonal corresponden a clasificaciones correctas.</p></li>
+<li><p>Las entradas fuera de la diagonal corresponden a errores de clasificación.</p></li>
+<li><p>Esta matriz es la base para calcular las métricas de desempeño.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="tasa-de-mal-clasificación">Tasa de mal clasificación</h3>
+<p>La tasa de mal clasificación mide la proporción total de observaciones clasificadas incorrectamente. <span class="math display">\[
+\text{TMC}
+=
+1-
+\frac{\sum_{g=1}^{G} n_{gg}}{n},
+\]</span> donde <span class="math inline">\(n_{gg}\)</span> es el número de observaciones del grupo <span class="math inline">\(g\)</span> clasificadas correctamente.</p>
+<p>Menores valores indican mejor desempeño global.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="sensibilidad-por-grupo">Sensibilidad por grupo</h3>
+<p>La sensibilidad del grupo <span class="math inline">\(g\)</span> mide la proporción de observaciones reales de ese grupo que fueron clasificadas correctamente. <span class="math display">\[
+\text{Sensibilidad}_g
+=
+\frac{n_{gg}}{n_{g+}},
+\]</span> donde <span class="math inline">\(n_{g+}\)</span> es el total de observaciones reales del grupo <span class="math inline">\(g\)</span>.</p>
+<p>Esta métrica permite identificar si el método falla en grupos específicos.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="exactitud-balanceada">Exactitud balanceada</h3>
+<p>La exactitud balanceada resume el desempeño promedio por grupo. <span class="math display">\[
+\text{Exactitud balanceada}
+=
+\frac{1}{G}
+\sum_{g=1}^{G}
+\text{Sensibilidad}_g.
+\]</span> Es especialmente útil cuando los grupos están desbalanceados, porque no deja que el grupo mayoritario domine la evaluación.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="comparación-de-métodos">Comparación de métodos</h3>
+<div class="slide" style="font-size: 90%;">
+<p>Los métodos se ajustan con la misma muestra de entrenamiento y se evalúan sobre la misma muestra de prueba.</p>
+<p>La comparación debe considerar:</p>
+<ul>
+<li>matriz de confusión;</li>
+<li>tasa de mala clasificación;</li>
+<li>sensibilidad por grupo;</li>
+<li>exactitud balanceada.</li>
+</ul>
+<p>El método preferido debe tener baja tasa de mal clasificación y desempeño equilibrado entre los grupos.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="uso-final-del-método-seleccionado">Uso final del método seleccionado</h3>
+<p>Una vez seleccionado el método, la regla discriminante puede aplicarse a observaciones nuevas cuyo grupo es desconocido.</p>
+<p>En ese caso, el objetivo ya no es evaluar el desempeño, sino asignar cada nueva observación a uno de los grupos definidos previamente.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="construcción-de-la-regla-final">Construcción de la regla final</h3>
+<p>Una vez seleccionado el método, la regla discriminante final puede recalcularse con toda la muestra etiquetada. En esta etapa se mantienen fijos el método, las variables, las transformaciones y las probabilidades a priori. La regla obtenida con toda la muestra es la que se usa para clasificar nuevas observaciones.</p>
 
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Prof. Mario Pacheco / AEDM</p>
+<p>Prof. Mario Pacheco / DC</p>
 </div>
 </div></div>
 
